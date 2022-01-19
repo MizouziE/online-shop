@@ -4,12 +4,14 @@ import Hash from '@ioc:Adonis/Core/Hash'
 type User = {
   id: string
   email: string
+  name: string
   password: string
   rememberMeToken: string | null
 }
 
 const UserSchema = new mongoose.Schema<User>({
   email: String,
+  name: String,
   password: String,
   rememberMeToken: String,
 })

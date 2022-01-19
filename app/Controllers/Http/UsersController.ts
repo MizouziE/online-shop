@@ -1,4 +1,5 @@
 // import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import User from 'App/Models/User';
 
 export default class UsersController {
   public async index() {
@@ -13,8 +14,9 @@ export default class UsersController {
     return 'POST user';
   }
 
-  public async show() {
-    return 'GET user';
+  public async show({ params, view }) {
+    const user = await User.find();
+    return view.render('users/index', { user });
   }
 
   public async update() {

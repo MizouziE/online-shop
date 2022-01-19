@@ -9,6 +9,7 @@ import type { UserProviderContract, ProviderUserContract } from '@ioc:Adonis/Add
 export type User = {
   id: string;
   email: string;
+  name: string;
   password: string;
   rememberMeToken: string | null;
 };
