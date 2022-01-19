@@ -6,12 +6,34 @@ export default class UsersController {
     return 'GET users';
   }
 
-  public async store() {
-    return 'POST user';
-  }
-
-  public async create() {
-    return 'POST user';
+  public async store(req, res) {
+    const userData = req.body;
+    const enteredEmail = userData.email;
+    const enteredConfirmEmail = userData['confirm-email'];
+    const enteredPassword = userData.password;
+  
+    if (
+      !enteredEmail ||
+      !enteredConfirmEmail ||
+      !enteredPassword ||
+      enteredPassword.trim() < 6 ||
+      enteredEmail !== enteredConfirmEmail ||
+      !enteredEmail.includes('@')
+    ) {
+  
+      req.session.inputData = {
+        hasError: true,
+        message: 'Nah fam, that ain\'t gonna run...',
+        email: enteredEmail,
+        confirmEmail: enteredConfirmEmail,
+        password: enteredPassword
+      };
+  
+      req.session.save(function () {
+        res.redirect('/signup');
+      });
+      return;
+    }
   }
 
   public async show({ params, view }) {
