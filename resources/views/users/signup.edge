@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-up</title>
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+</head>
+<body>
+
+  <main>
+    <div>
+      <h1> Sign-up </h1>
+
+      <form method="POST" action="{{ route('UsersController.create') }}">
+        <div>
+          <label for="email"> Email </label>
+          <br>
+          <input type="text" name="email" placeholder="Enter email address">
+          <p>
+            <label for="confirm-email"> Confirm Email </label>
+            <br>
+            <input type="text" name="confirm-email" placeholder="Re-enter email address">
+            <p>
+            @if(flashMessages.has('auth.errors.email'))
+              {{ flashMessages.get('auth.errors.email') }}
+            @end
+          </p>
+        </div>
+
+        <div>
+            <label for="password"> Password </label>
+            <br>
+            <input type="password" name="password" placeholder="Enter account password">
+            <p>          
+                <label for="confirm-password"> Confirm Password </label>
+                <br>
+                <input type="confirm-password" name="confirm-password" placeholder="Re-enter account password">
+                <p>
+            @if(flashMessages.has('auth.errors.password'))
+              {{ flashMessages.get('auth.errors.password') }}
+            @end
+          </p>
+        </div>
+
+        <button type="submit"> Sign-up </button>
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>
