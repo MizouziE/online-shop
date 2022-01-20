@@ -36,7 +36,7 @@ export default class UsersController {
     }
   }
 
-  public async show({ params, view }) {
+  public async show({ view }) {
     const user = await User.find();
     return view.render('users/index', { user });
   }

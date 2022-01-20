@@ -13,7 +13,12 @@
     <div>
       <h1> Sign-up </h1>
 
-      <form method="POST" action="{{ route('UsersController.create') }}">
+      <form method="POST" action="{{ route('AuthController.signup') }}">
+        <div>
+          <label for="name"> Name </label>
+          <br>
+          <input type="text" name="name" autocomplete="username" placeholder="Enter name">
+        </div>
         <div>
           <label for="email"> Email </label>
           <br>
@@ -32,11 +37,11 @@
         <div>
             <label for="password"> Password </label>
             <br>
-            <input type="password" name="password" placeholder="Enter account password">
+            <input type="password" name="password" autocomplete="new-password" placeholder="Enter password">
             <p>          
                 <label for="confirm-password"> Confirm Password </label>
                 <br>
-                <input type="confirm-password" name="confirm-password" placeholder="Re-enter account password">
+                <input type="password" name="confirm-password" autocomplete="new-password" placeholder="Re-enter password">
                 <p>
             @if(flashMessages.has('auth.errors.password'))
               {{ flashMessages.get('auth.errors.password') }}
